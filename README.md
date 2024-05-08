@@ -172,7 +172,7 @@ def suma_digitos_recursiva(numero):
         resto_numero = numero // 10
         return ultimo_digito + suma_digitos_recursiva(resto_numero)
 
-# Ejemplo de uso
+ Ejemplo de uso
 numero_ejemplo = 102
 suma_total = suma_digitos_recursiva(numero_ejemplo)
 print(f"La suma de los dígitos de {numero_ejemplo} es: {suma_total}")
