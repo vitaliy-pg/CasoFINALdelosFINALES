@@ -2,7 +2,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
-
     private static HashMap<String, UserAccount> accounts = new HashMap<>();
     private static Scanner scanner = new Scanner(System.in);
 
@@ -14,9 +13,12 @@ public class Main {
             System.out.println("1. Create User Account");
             System.out.println("2. Follow User");
             System.out.println("3. Post Tweet");
-            System.out.println("4. Show Account Info");
-            System.out.println("5. Exit");
+            System.out.println("4. Retweet");
+            System.out.println("5. Send Direct Message");
+            System.out.println("6. Show Account Info");
+            System.out.println("7. Exit");
             System.out.print("Enter option: ");
+
             int option = scanner.nextInt();
             scanner.nextLine(); // Consume newline left-over
 
@@ -31,9 +33,15 @@ public class Main {
                     postTweet();
                     break;
                 case 4:
-                    showAccountInfo();
+                    retweet();
                     break;
                 case 5:
+                    sendDirectMessage();
+                    break;
+                case 6:
+                    showAccountInfo();
+                    break;
+                case 7:
                     running = false;
                     break;
                 default:
@@ -44,7 +52,6 @@ public class Main {
 
         scanner.close();
     }
-
 
     private static void createUserAccount() {
         System.out.print("Enter alias: ");
@@ -61,6 +68,7 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
     private static void followUser() {
         System.out.print("Enter your alias: ");
         String yourAlias = scanner.nextLine();
@@ -78,6 +86,7 @@ public class Main {
         yourAccount.follow(otherAccount);
         System.out.println(yourAlias + " is now following " + otherAlias);
     }
+
     private static void postTweet() {
         System.out.print("Enter your alias: ");
         String alias = scanner.nextLine();
@@ -90,9 +99,52 @@ public class Main {
             return;
         }
 
-        Tweet tweet = new Tweet(content); // Asumimos que Tweet tiene un constructor que acepta un string
+        Tweet tweet = new Tweet(account, content);
         account.tweet(tweet);
         System.out.println("Tweet posted.");
+    }
+
+    private static void retweet() {
+        System.out.print("Enter your alias: ");
+        String alias = scanner.nextLine();
+        System.out.print("Enter the original tweet sender's alias: ");
+        String originalSenderAlias = scanner.nextLine();
+        System.out.print("Enter your message for the retweet: ");
+        String retweetMessage = scanner.nextLine();
+
+        UserAccount retweeter = accounts.get(alias);
+        UserAccount originalSender = accounts.get(originalSenderAlias);
+
+        if (retweeter == null || originalSender == null) {
+            System.out.println("One or both aliases do not exist.");
+            return;
+        }
+
+        // Assumption: the original Tweet is the last one sent by the original sender
+        Tweet originalTweet = originalSender.getTweets().get(originalSender.getTweets().size() - 1);
+        Retweet retweet = new Retweet(retweeter, retweetMessage, originalTweet);
+        retweeter.tweet(retweet);
+        System.out.println("Retweet posted.");
+    }
+
+    private static void sendDirectMessage() {
+        System.out.print("Enter your alias: ");
+        String senderAlias = scanner.nextLine();
+        System.out.print("Enter the receiver's alias: ");
+        String receiverAlias = scanner.nextLine();
+        System.out.print("Enter your message: ");
+        String message = scanner.nextLine();
+
+        UserAccount sender = accounts.get(senderAlias);
+        UserAccount receiver = accounts.get(receiverAlias);
+
+        if (sender == null || receiver == null) {
+            System.out.println("One or both aliases do not exist.");
+            return;
+        }
+
+        DirectMessage dm = new DirectMessage(sender, receiver, message);
+        System.out.println("Direct message sent.");
     }
 
     private static void showAccountInfo() {
@@ -108,12 +160,12 @@ public class Main {
         System.out.println(account);
         System.out.println("Tweets:");
         for (Tweet tweet : account.getTweets()) {
-            System.out.println(tweet.getContent()); // Asumimos que Tweet tiene un método getContent()
+            System.out.println(tweet);
         }
         System.out.println("Timeline:");
         for (Tweet tweet : account.getTimeline()) {
-            System.out.println(tweet.getContent()); // Mostrar contenido del timeline
+            System.out.println(tweet);
         }
     }
+}
 
-    }
