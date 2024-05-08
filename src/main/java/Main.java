@@ -250,3 +250,4 @@ public class Main extends JFrame {
     }
 }
 
+//he tenido que hacer los comits como una persona normal
