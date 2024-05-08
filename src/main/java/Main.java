@@ -17,6 +17,32 @@ public class Main {
             System.out.println("4. Show Account Info");
             System.out.println("5. Exit");
             System.out.print("Enter option: ");
+            int option = scanner.nextInt();
+            scanner.nextLine(); // Consume newline left-over
 
+            switch (option) {
+                case 1:
+                    createUserAccount();
+                    break;
+                case 2:
+                    followUser();
+                    break;
+                case 3:
+                    postTweet();
+                    break;
+                case 4:
+                    showAccountInfo();
+                    break;
+                case 5:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+                    break;
+            }
+        }
+
+        scanner.close();
+    }
 
         }
