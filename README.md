@@ -77,5 +77,30 @@ O(1).
 Pila: Se utiliza cuando se necesita un comportamiento LIFO, es decir, cuando es importante procesar elementos en orden inverso al que fueron añadidos. Por ejemplo, en la gestión de llamadas en la recursión o en el procesamiento de operaciones matemáticas en notación postfija.
 Cola: Se utiliza cuando se necesita un comportamiento FIFO, es decir, cuando es importante procesar elementos en el mismo orden en el que fueron añadidos. Por ejemplo, en la gestión de tareas en un sistema de gestión de procesos o en la implementación de buffers en la comunicación de datos.
 
+4) Explica el método de ordenación denominado inserción y describe las 
+iteraciones sobre el siguiente conjunto de datos:
+50 20 84 13 22 16 89 85
 
+Descripción del método de ordenación por inserción:
+
+Comenzamos con la segunda posición de la lista y avanzamos hasta el final.
+En cada iteración, tomamos el elemento actual y lo comparamos con los elementos que están a su izquierda en la parte ordenada de la lista.
+Mientras el elemento actual sea menor que el elemento a su izquierda, intercambiamos esos elementos.
+Continuamos este proceso hasta que el elemento actual sea mayor o igual que el elemento a su izquierda, o hasta que lleguemos al principio de la lista.
+Una vez que todos los elementos hayan sido procesados, la lista estará ordenada.
+Iteraciones sobre el conjunto de datos dado (50 20 84 13 22 16 89 85):
+
+Iteración 1: Empezamos con el segundo elemento (20). Lo comparamos con el elemento anterior (50) y como es menor, los intercambiamos. La lista ahora es (20 50 84 13 22 16 89 85).
+
+Iteración 2: Continuamos con el tercer elemento (84), lo dejamos en su posición porque es mayor que el elemento anterior (50). La lista sigue siendo (20 50 84 13 22 16 89 85).
+
+Iteración 3: Pasamos al cuarto elemento (13). Lo comparamos con los elementos anteriores y lo vamos moviendo hacia la izquierda hasta que esté en su posición correcta. La lista se convierte en (13 20 50 84 22 16 89 85).
+
+Iteración 4: Avanzamos al quinto elemento (22). Lo comparamos con los elementos anteriores y lo movemos a su posición correcta. La lista ahora es (13 20 22 50 84 16 89 85).
+
+Iteración 5: Procesamos el sexto elemento (16). Lo comparamos y lo movemos a su posición correcta. La lista se convierte en (13 16 20 22 50 84 89 85).
+
+Iteración 6: Continuamos con el séptimo elemento (89), lo dejamos en su posición porque es mayor que el elemento anterior (84). La lista sigue siendo (13 16 20 22 50 84 89 85).
+
+Iteración 7: Finalmente, el octavo elemento (85) está en su posición correcta ya que es mayor que el elemento anterior (84). La lista permanece como (13 16 20 22 50 84 85 89).
 
