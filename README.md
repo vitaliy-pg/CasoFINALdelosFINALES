@@ -1,6 +1,6 @@
 #CASO FINAL DE LOS FINALES.
 
-Si quieres acceder a mi repositorio click aqui:
+Si quieres acceder a mi repositorio click aqui: https://github.com/vitaliy-pg/CasoFINALdelosFINALES.git
 
 #EJERCICIO 1:
 
