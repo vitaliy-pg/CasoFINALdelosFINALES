@@ -136,3 +136,10 @@ Resolvamos la segunda ecuación:
 Dado que estamos buscando un tamaño de entrada positivo, tomamos (n = 8).
 
 Por lo tanto, a partir de un tamaño de entrada (n = 8), la función (A) es más eficiente que la función (B).
+
+#EJERCICIO 3
+
+Preguntas:
+a) ¿Qué imprime el código? En caso de que no compile indique el motivo y arregle el programa 
+como considere conveniente. Explique su solución de manera concisa.
+b) Explica brevemente qué cálculo está haciendo y qué tipo de recursividad está empleando.
