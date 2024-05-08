@@ -179,8 +179,6 @@ public class Main {
             System.out.println ( tweet );
         }
     }
-
-    private static HashMap<String, UserAccount> accounts;
     private static UserAccount currentUser;
 
     public static void loadUser ( String alias ) {
@@ -195,7 +193,7 @@ public class Main {
         ArrayList<UserAccount> userList = new ArrayList<>(accounts.values());
         userList.sort(Comparator.comparing(u -> u.getEmail().toString()));
         System.out.println("Usuarios ordenados por email:");
-        userList.forEach(u -> System.out.println(u.getEmail()));
+        userList.forEach(u -> System.out.println(u.getEmail().toString()));
     }
 
 }

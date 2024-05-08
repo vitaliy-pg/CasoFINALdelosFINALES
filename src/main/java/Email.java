@@ -12,4 +12,11 @@ public class Email {
     public String toString() {
         return emailAddress;
     }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+    public int compareTo(Email other) {
+        return this.emailAddress.compareTo(other.emailAddress);
+    }
 }

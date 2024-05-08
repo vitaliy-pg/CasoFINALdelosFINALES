@@ -57,4 +57,10 @@ public class UserAccount {
     public List<Tweet> getTweets() {
         return tweets;
     }
+
+
+    public Email getEmail() {
+        return email;
+    }
+
 }
