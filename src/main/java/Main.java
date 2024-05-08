@@ -1,61 +1,66 @@
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.*;
 
 
 public class Main {
-    private static HashMap<String, UserAccount> accounts = new HashMap<> ();
-    private static Scanner scanner = new Scanner ( System.in );
+    private static HashMap<String, UserAccount> accounts = new HashMap<>();
+    private static UserAccount currentUser;  // Usuario actualmente cargado
+    private static Scanner scanner = new Scanner(System.in);
 
-    public static void main ( String[] args ) {
+    public static void main(String[] args) {
         boolean running = true;
-
         while (running) {
-            System.out.println ( "\nTwitter Mini:" );
-            System.out.println ( "1. Create User Account" );
-            System.out.println ( "2. Follow User" );
-            System.out.println ( "3. Post Tweet" );
-            System.out.println ( "4. Retweet" );
-            System.out.println ( "5. Send Direct Message" );
-            System.out.println ( "6. Show Account Info" );
-            System.out.println ( "7. Exit" );
-            System.out.print ( "Enter option: " );
+            System.out.println("\nTwitter Mini:");
+            System.out.println("1. Create User Account");
+            System.out.println("2. Follow User");
+            System.out.println("3. Post Tweet");
+            System.out.println("4. Retweet");
+            System.out.println("5. Send Direct Message");
+            System.out.println("6. Show Account Info");
+            System.out.println("7. Load User");  // Añadido para cargar un usuario
+            System.out.println("8. Sort Users by Email");  // Añadido para ordenar por email
+            System.out.println("9. Exit");
+            System.out.print("Enter option: ");
 
-            int option = scanner.nextInt ();
-            scanner.nextLine (); // Consume newline left-over
+            int option = scanner.nextInt();
+            scanner.nextLine();  // Consume newline left-over
 
             switch (option) {
                 case 1:
-                    createUserAccount ();
+                    createUserAccount();
                     break;
                 case 2:
-                    followUser ();
+                    followUser();
                     break;
                 case 3:
-                    postTweet ();
+                    postTweet();
                     break;
                 case 4:
-                    retweet ();
+                    retweet();
                     break;
                 case 5:
-                    sendDirectMessage ();
+                    sendDirectMessage();
                     break;
                 case 6:
-                    showAccountInfo ();
+                    showAccountInfo();
                     break;
                 case 7:
+                    System.out.print("Enter user alias to load: ");
+                    String alias = scanner.nextLine();
+                    loadUser(alias);
+                    break;
+                case 8:
+                    sortByEmail();
+                    break;
+                case 9:
                     running = false;
                     break;
                 default:
-                    System.out.println ( "Invalid option. Please try again." );
+                    System.out.println("Invalid option. Please try again.");
                     break;
             }
         }
-
-        scanner.close ();
+        scanner.close();
     }
-
     private static void createUserAccount () {
         System.out.print ( "Enter alias: " );
         String alias = scanner.nextLine ();
@@ -179,23 +184,23 @@ public class Main {
             System.out.println ( tweet );
         }
     }
-    private static UserAccount currentUser;
 
-    public static void loadUser ( String alias ) {
-        UserManager userManager = new UserManager();
-        userManager.addUser("user1", new UserAccount("user1", new Email("user1@example.com")));
-        userManager.addUser("user2", new UserAccount("user2", new Email("user2@example.net")));
-
-        // Carga un usuario y verifica la funcionalidad
-        userManager.loadUser("user1");
-        System.out.println("Usuario actual: " + userManager.getCurrentUser());
+    private static void loadUser(String alias) {
+        currentUser = accounts.get(alias);
+        if (currentUser == null) {
+            System.out.println("Usuario no encontrado.");
+        } else {
+            System.out.println("Usuario " + alias + " cargado correctamente.");
+        }
     }
-    public static void sortByEmail () {
-        ArrayList<UserAccount> userList = new ArrayList<>(accounts.values());
+
+    private static void sortByEmail() {
+        List<UserAccount> userList = new ArrayList<>(accounts.values());
         userList.sort(Comparator.comparing(u -> u.getEmail().toString()));
         System.out.println("Usuarios ordenados por email:");
         userList.forEach(u -> System.out.println(u.getEmail().toString()));
     }
+
 
 }
 
