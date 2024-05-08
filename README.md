@@ -143,3 +143,43 @@ Preguntas:
 a) ¿Qué imprime el código? En caso de que no compile indique el motivo y arregle el programa 
 como considere conveniente. Explique su solución de manera concisa.
 b) Explica brevemente qué cálculo está haciendo y qué tipo de recursividad está empleando.
+
+#EJERCICIO 4 
+
+Calcular de forma recursiva la suma de los dígitos de un número siendo un ejemplo el número 102 -> 
+1 + 0 + 2 = 3. Recuerde que puede realizar los cambios de tipo que crea necesarios para facilitar la 
+resolución:
+¿ Qué t ipo de recursividad se está empleando? ¿ Qué comple jidad computacional 
+tiene el algoritmo?
+
+
+Algoritmo Recursivo:
+Definiremos una función llamada suma_digitos_recursiva que tomará un número entero como entrada.
+Si el número es menor o igual a 9 (un solo dígito), simplemente devolveremos ese número.
+De lo contrario, calcularemos la suma de los dígitos recursivamente:
+Extraeremos el último dígito del número (módulo 10).
+Luego llamaremos a la función recursivamente con el número restante (división entera por 10).
+Sumaremos el último dígito extraído con el resultado de la llamada recursiva.
+Finalmente, devolveremos la suma total.
+Implementación en Python:
+Python
+
+def suma_digitos_recursiva(numero):
+    if numero <= 9:
+        return numero
+    else:
+        ultimo_digito = numero % 10
+        resto_numero = numero // 10
+        return ultimo_digito + suma_digitos_recursiva(resto_numero)
+
+# Ejemplo de uso
+numero_ejemplo = 102
+suma_total = suma_digitos_recursiva(numero_ejemplo)
+print(f"La suma de los dígitos de {numero_ejemplo} es: {suma_total}")
+Código generado por IA. Revisar y usar cuidadosamente. Más información sobre preguntas frecuentes.
+Tipo de Recursividad:
+El algoritmo utiliza recursión directa, ya que la función se llama a sí misma directamente.
+Complejidad Computacional:
+La complejidad computacional de este algoritmo es (O(\log n)), donde (n) es el número de entrada.
+Esto se debe a que en cada llamada recursiva, reducimos el tamaño del número en un dígito (división entera por 10).
+Por lo tanto, el número de llamadas recursivas es proporcional al número de dígitos en el número de entrada.
