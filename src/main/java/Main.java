@@ -52,5 +52,15 @@ public class Main {
         System.out.print("Enter email: ");
         String emailString = scanner.nextLine();
         Email email = new Email(emailString); // Asumimos que el constructor de Email está implementado correctamente
+        try {
+            UserAccount newAccount = new UserAccount(alias, email);
+            accounts.put(alias, newAccount);
+            System.out.println("User account created successfully.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+
 
     }
