@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 
 public class Main extends JFrame {
     private static HashMap<String, UserAccount> accounts = new HashMap<>();
@@ -21,6 +22,7 @@ public class Main extends JFrame {
     private JTextField dmSenderAliasField;
     private JTextField dmReceiverAliasField;
     private JTextField dmMessageField;
+    private JTextArea sortedUsersArea;
 
     public Main() {
         super("Twitter Mini");
@@ -131,19 +133,29 @@ public class Main extends JFrame {
         mainPanel.add(aliasField);
         mainPanel.add(loadUserButton);
 
-        JButton sortByEmailButton = new JButton("Sort by Email");
+        JButton sortByEmailButton = new JButton("Sort Users by Email");
         sortByEmailButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 sortByEmail();
             }
         });
+        mainPanel.add(new JLabel(""));
         mainPanel.add(sortByEmailButton);
+
+
+        sortedUsersArea = new JTextArea(); // Inicialización del campo sortedUsersArea
+        sortedUsersArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(sortedUsersArea);
+        mainPanel.add(scrollPane);
+
 
 
         // Add more components for other functionalities...
 
         getContentPane().add(mainPanel);
     }
+
+
     private static void createUserAccount () {
         System.out.print ( "Enter alias: " );
         String alias = scanner.nextLine ();
@@ -277,13 +289,25 @@ public class Main extends JFrame {
         }
     }
 
-    private static void sortByEmail() {
+    private void sortByEmail() {
         List<UserAccount> userList = new ArrayList<>(accounts.values());
         userList.sort(Comparator.comparing(u -> u.getEmail().toString()));
-        System.out.println("Usuarios ordenados por email:");
-        userList.forEach(u -> System.out.println(u.getEmail().toString()));
+
+        StringBuilder sortedUsersText = new StringBuilder();
+        sortedUsersText.append("Usuarios ordenados por email:\n");
+        for (UserAccount user : userList) {
+            sortedUsersText.append(user.getEmail().toString()).append("\n");
+        }
+        sortedUsersArea.setText(sortedUsersText.toString());
     }
 
-
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                Main main = new Main();
+                main.setVisible(true);
+            }
+        });
+    }
 }
 
