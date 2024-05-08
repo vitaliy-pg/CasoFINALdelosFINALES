@@ -53,8 +53,20 @@ public class UserAccount {
         following.add ( otherUser );
         otherUser.addFollower ( this );
     }
-
+    private void addFollower(UserAccount follower) {
+        // No hay necesidad de comprobar duplicados aquí porque 'follow' ya lo hace
+        follower.timeline.addAll(this.tweets);  // Añadir los tweets actuales al timeline del nuevo seguidor
+    }
     // Métodos adicionales se definirán aquí (parte b y c)
+
+    public void tweet(Tweet newTweet) {
+        // Añade el tweet a la lista de tweets del usuario
+        tweets.add(newTweet);
+        // Cada seguidor recibe el tweet en su timeline
+        for (UserAccount follower : following) {
+            follower.timeline.add(newTweet);
+        }
+    }
 }
 
 class Utils {
