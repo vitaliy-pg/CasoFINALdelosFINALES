@@ -9,9 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 public class Main extends JFrame {
+    private static final Scanner scanner = new Scanner(System.in);
     private static UserAccount currentUser; // Declaración de currentUser
-
-    private static Scanner scanner = new Scanner(System.in);
     private static Map<String, UserAccount> accounts = new HashMap<>();
     private JTextField aliasField;
     private JTextField emailField;
@@ -27,75 +26,56 @@ public class Main extends JFrame {
     private JTextField dmMessageField;
     private JTextArea sortedUsersArea;
 
-    public  Main() {
-
+    public Main() {
         super("Twitter Mini");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 600);
+        setSize(800, 600);
         setLocationRelativeTo(null);
 
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(13, 2, 10, 10));
+        // Crear submenús
+        JPanel sidebarPanel = new JPanel();
+        sidebarPanel.setLayout(new GridLayout(9, 1, 10, 10));
 
-        addComponent(mainPanel, "Create User Account", createTextField("Alias:"), aliasField = new JTextField());
-        addComponent(mainPanel, "", createTextField("Email:"), emailField = new JTextField());
         JButton createUserButton = createButton("Create User Account", e -> createUserAccount());
-        mainPanel.add(new JLabel());
-        mainPanel.add(createUserButton);
+        sidebarPanel.add(createUserButton);
 
-        addComponent(mainPanel, "Follow User", createTextField("Your Alias:"), userAliasField = new JTextField());
-        addComponent(mainPanel, "", createTextField("Other User's Alias:"), otherUserAliasField = new JTextField());
         JButton followUserButton = createButton("Follow User", e -> followUser());
-        mainPanel.add(new JLabel());
-        mainPanel.add(followUserButton);
+        sidebarPanel.add(followUserButton);
 
-        addComponent(mainPanel, "Post Tweet", createTextField("Alias:"), tweetAliasField = new JTextField());
-        addComponent(mainPanel, "", createTextField("Tweet Content:"), tweetContentField = new JTextField());
         JButton postTweetButton = createButton("Post Tweet", e -> postTweet());
-        mainPanel.add(new JLabel());
-        mainPanel.add(postTweetButton);
+        sidebarPanel.add(postTweetButton);
 
-        addComponent(mainPanel, "Retweet", createTextField("Alias:"), retweetAliasField = new JTextField());
-        addComponent(mainPanel, "", createTextField("Original Sender's Alias:"), originalSenderAliasField = new JTextField());
-        addComponent(mainPanel, "", createTextField("Retweet Message:"), retweetMessageField = new JTextField());
         JButton retweetButton = createButton("Retweet", e -> retweet());
-        mainPanel.add(new JLabel());
-        mainPanel.add(retweetButton);
+        sidebarPanel.add(retweetButton);
 
-        // Send Direct Message
-        addComponent(mainPanel, "Send Direct Message", createTextField("Sender Alias:"), dmSenderAliasField = new JTextField());
-        addComponent(mainPanel, "", createTextField("Receiver Alias:"), dmReceiverAliasField = new JTextField());
-        addComponent(mainPanel, "", createTextField("Message:"), dmMessageField = new JTextField());
         JButton dmButton = createButton("Send Direct Message", e -> sendDirectMessage());
-        mainPanel.add(new JLabel());
-        mainPanel.add(dmButton);
+        sidebarPanel.add(dmButton);
 
-        // Show Account Info
-        addComponent(mainPanel, "Show Account Info", createTextField("Alias:"), aliasField = new JTextField());
         JButton showAccountInfoButton = createButton("Show Account Info", e -> showAccountInfo());
-        mainPanel.add(new JLabel());
-        mainPanel.add(showAccountInfoButton);
+        sidebarPanel.add(showAccountInfoButton);
 
-        // Load User
-        addComponent(mainPanel, "Load User", createTextField("Alias:"), aliasField = new JTextField());
         JButton loadUserButton = createButton("Load User", e -> loadUser(aliasField.getText()));
-        mainPanel.add(new JLabel());
-        mainPanel.add(loadUserButton);
+        sidebarPanel.add(loadUserButton);
 
-        // Sort Users by Email
         JButton sortByEmailButton = createButton("Sort Users by Email", e -> sortByEmail());
-        mainPanel.add(new JLabel());
-        mainPanel.add(sortByEmailButton);
+        sidebarPanel.add(sortByEmailButton);
 
-        sortedUsersArea = new JTextArea(); // Inicialización del campo sortedUsersArea
-        sortedUsersArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(sortedUsersArea);
-        mainPanel.add(scrollPane);
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
 
+        // Contenedor principal
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new GridLayout(13, 2, 10, 10));
+
+        // Componentes principales
+        addComponent(contentPanel, "Alias:", aliasField = new JTextField());
+        addComponent(contentPanel, "Email:", emailField = new JTextField());
+        mainPanel.add(contentPanel, BorderLayout.CENTER);
+
+        // Agregar barra lateral y contenedor principal al marco principal
+        mainPanel.add(sidebarPanel, BorderLayout.WEST);
         getContentPane().add(mainPanel);
     }
-
-
 
     private void addComponent(JPanel panel, String label, Component... components) {
         panel.add(new JLabel(label));
@@ -203,9 +183,9 @@ public class Main extends JFrame {
     private static void sendDirectMessage () {
         System.out.print ( "Enter your alias: " );
         String senderAlias = scanner.nextLine ();
-        System.out.print ( "Enter the receiver's alias: " );
+        System.out.print ( "el ruso " );
         String receiverAlias = scanner.nextLine ();
-        System.out.print ( "Enter your message: " );
+        System.out.print ( "tweet enviado: " );
         String message = scanner.nextLine ();
 
         UserAccount sender = accounts.get ( senderAlias );
@@ -263,9 +243,10 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
-
-        Main main = new Main();
-        main.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            Main main = new Main();
+            main.setVisible(true);
+        });
     }
 }
 
