@@ -60,6 +60,23 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
     }
+    private static void followUser() {
+        System.out.print("Enter your alias: ");
+        String yourAlias = scanner.nextLine();
+        System.out.print("Enter the alias of the user you want to follow: ");
+        String otherAlias = scanner.nextLine();
+
+        UserAccount yourAccount = accounts.get(yourAlias);
+        UserAccount otherAccount = accounts.get(otherAlias);
+
+        if (yourAccount == null || otherAccount == null) {
+            System.out.println("One or both aliases do not exist.");
+            return;
+        }
+
+        yourAccount.follow(otherAccount);
+        System.out.println(yourAlias + " is now following " + otherAlias);
+    }
 
 
 
