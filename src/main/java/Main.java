@@ -1,65 +1,148 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
-
-public class Main {
+public class Main extends JFrame {
     private static HashMap<String, UserAccount> accounts = new HashMap<>();
     private static UserAccount currentUser;  // Usuario actualmente cargado
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        boolean running = true;
-        while (running) {
-            System.out.println("\nTwitter Mini:");
-            System.out.println("1. Create User Account");
-            System.out.println("2. Follow User");
-            System.out.println("3. Post Tweet");
-            System.out.println("4. Retweet");
-            System.out.println("5. Send Direct Message");
-            System.out.println("6. Show Account Info");
-            System.out.println("7. Load User");  // Añadido para cargar un usuario
-            System.out.println("8. Sort Users by Email");  // Añadido para ordenar por email
-            System.out.println("9. Exit");
-            System.out.print("Enter option: ");
+    private JTextField aliasField;
+    private JTextField emailField;
+    private JTextField userAliasField;
+    private JTextField otherUserAliasField;
+    private JTextField tweetAliasField;
+    private JTextField tweetContentField;
+    private JTextField retweetAliasField;
+    private JTextField originalSenderAliasField;
+    private JTextField retweetMessageField;
+    private JTextField dmSenderAliasField;
+    private JTextField dmReceiverAliasField;
+    private JTextField dmMessageField;
 
-            int option = scanner.nextInt();
-            scanner.nextLine();  // Consume newline left-over
+    public Main() {
+        super("Twitter Mini");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 500);
+        setLocationRelativeTo(null);
 
-            switch (option) {
-                case 1:
-                    createUserAccount();
-                    break;
-                case 2:
-                    followUser();
-                    break;
-                case 3:
-                    postTweet();
-                    break;
-                case 4:
-                    retweet();
-                    break;
-                case 5:
-                    sendDirectMessage();
-                    break;
-                case 6:
-                    showAccountInfo();
-                    break;
-                case 7:
-                    System.out.print("Enter user alias to load: ");
-                    String alias = scanner.nextLine();
-                    loadUser(alias);
-                    break;
-                case 8:
-                    sortByEmail();
-                    break;
-                case 9:
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Invalid option. Please try again.");
-                    break;
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(10, 2));
+
+        JButton createUserButton = new JButton("Create User Account");
+        createUserButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                createUserAccount();
             }
-        }
-        scanner.close();
+        });
+        mainPanel.add(new JLabel("Alias:"));
+        aliasField = new JTextField();
+        mainPanel.add(aliasField);
+        mainPanel.add(new JLabel("Email:"));
+        emailField = new JTextField();
+        mainPanel.add(emailField);
+        mainPanel.add(createUserButton);
+
+        JButton followUserButton = new JButton("Follow User");
+        followUserButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                followUser();
+            }
+        });
+        mainPanel.add(new JLabel("Your Alias:"));
+        userAliasField = new JTextField();
+        mainPanel.add(userAliasField);
+        mainPanel.add(new JLabel("Other User's Alias:"));
+        otherUserAliasField = new JTextField();
+        mainPanel.add(otherUserAliasField);
+        mainPanel.add(followUserButton);
+
+        JButton postTweetButton = new JButton("Post Tweet");
+        postTweetButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                postTweet();
+            }
+        });
+        mainPanel.add(new JLabel("Alias:"));
+        tweetAliasField = new JTextField();
+        mainPanel.add(tweetAliasField);
+        mainPanel.add(new JLabel("Tweet Content:"));
+        tweetContentField = new JTextField();
+        mainPanel.add(tweetContentField);
+        mainPanel.add(postTweetButton);
+
+        JButton retweetButton = new JButton("Retweet");
+        retweetButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                retweet();
+            }
+        });
+        mainPanel.add(new JLabel("Alias:"));
+        retweetAliasField = new JTextField();
+        mainPanel.add(retweetAliasField);
+        mainPanel.add(new JLabel("Original Sender's Alias:"));
+        originalSenderAliasField = new JTextField();
+        mainPanel.add(originalSenderAliasField);
+
+        mainPanel.add(new JLabel("Retweet Message:"));
+        retweetMessageField = new JTextField();
+        mainPanel.add(retweetMessageField);
+        mainPanel.add(retweetButton);
+
+        JButton dmButton = new JButton("Send Direct Message");
+        dmButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                sendDirectMessage();
+            }
+        });
+        mainPanel.add(new JLabel("Sender Alias:"));
+        dmSenderAliasField = new JTextField();
+        mainPanel.add(dmSenderAliasField);
+        mainPanel.add(new JLabel("Receiver Alias:"));
+        dmReceiverAliasField = new JTextField();
+        mainPanel.add(dmReceiverAliasField);
+        mainPanel.add(new JLabel("Message:"));
+        dmMessageField = new JTextField();
+        mainPanel.add(dmMessageField);
+        mainPanel.add(dmButton);
+
+        JButton showAccountInfoButton = new JButton("Show Account Info");
+        showAccountInfoButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                showAccountInfo();
+            }
+        });
+        mainPanel.add(new JLabel("Alias:"));
+        JTextField aliasField = new JTextField();
+
+
+        mainPanel.add(aliasField);
+        mainPanel.add(showAccountInfoButton);
+
+        JButton loadUserButton = new JButton("Load User");
+        loadUserButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadUser(aliasField.getText());
+            }
+        });
+        mainPanel.add(new JLabel("Alias:"));
+        mainPanel.add(aliasField);
+        mainPanel.add(loadUserButton);
+
+        JButton sortByEmailButton = new JButton("Sort by Email");
+        sortByEmailButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                sortByEmail();
+            }
+        });
+        mainPanel.add(sortByEmailButton);
+
+
+        // Add more components for other functionalities...
+
+        getContentPane().add(mainPanel);
     }
     private static void createUserAccount () {
         System.out.print ( "Enter alias: " );
