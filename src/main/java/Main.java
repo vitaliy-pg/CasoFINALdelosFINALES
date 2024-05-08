@@ -77,6 +77,22 @@ public class Main {
         yourAccount.follow(otherAccount);
         System.out.println(yourAlias + " is now following " + otherAlias);
     }
+    private static void postTweet() {
+        System.out.print("Enter your alias: ");
+        String alias = scanner.nextLine();
+        System.out.print("Enter tweet content: ");
+        String content = scanner.nextLine();
+
+        UserAccount account = accounts.get(alias);
+        if (account == null) {
+            System.out.println("Alias does not exist.");
+            return;
+        }
+
+        Tweet tweet = new Tweet(content); // Asumimos que Tweet tiene un constructor que acepta un string
+        account.tweet(tweet);
+        System.out.println("Tweet posted.");
+    }
 
 
 
