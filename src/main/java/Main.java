@@ -52,6 +52,7 @@ public class Main {
         System.out.print("Enter email: ");
         String emailString = scanner.nextLine();
         Email email = new Email(emailString); // Asumimos que el constructor de Email está implementado correctamente
+
         try {
             UserAccount newAccount = new UserAccount(alias, email);
             accounts.put(alias, newAccount);
@@ -94,6 +95,25 @@ public class Main {
         System.out.println("Tweet posted.");
     }
 
+    private static void showAccountInfo() {
+        System.out.print("Enter alias: ");
+        String alias = scanner.nextLine();
 
+        UserAccount account = accounts.get(alias);
+        if (account == null) {
+            System.out.println("Alias does not exist.");
+            return;
+        }
+
+        System.out.println(account);
+        System.out.println("Tweets:");
+        for (Tweet tweet : account.getTweets()) {
+            System.out.println(tweet.getContent()); // Asumimos que Tweet tiene un método getContent()
+        }
+        System.out.println("Timeline:");
+        for (Tweet tweet : account.getTimeline()) {
+            System.out.println(tweet.getContent()); // Mostrar contenido del timeline
+        }
+    }
 
     }
