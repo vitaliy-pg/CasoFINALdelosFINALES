@@ -167,5 +167,16 @@ public class Main {
             System.out.println(tweet);
         }
     }
+
+    private static HashMap<String, UserAccount> accounts;
+    private static UserAccount currentUser;
+
+    public static void loadUser(String alias) {
+        currentUser = accounts.get(alias);
+        if (currentUser == null) {
+            System.out.println("Usuario no encontrado.");
+        } else {
+            System.out.println("Usuario " + alias + " cargado correctamente.");
+        }
 }
 
