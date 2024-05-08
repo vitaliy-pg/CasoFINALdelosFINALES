@@ -45,4 +45,12 @@ public class Main {
         scanner.close();
     }
 
-        }
+
+    private static void createUserAccount() {
+        System.out.print("Enter alias: ");
+        String alias = scanner.nextLine();
+        System.out.print("Enter email: ");
+        String emailString = scanner.nextLine();
+        Email email = new Email(emailString); // Asumimos que el constructor de Email está implementado correctamente
+
+    }
