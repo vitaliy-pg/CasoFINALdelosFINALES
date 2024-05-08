@@ -47,3 +47,15 @@ public class UserAccount {
 
     // Métodos adicionales se definirán aquí (parte b y c)
 }
+
+class Utils {
+    // Método para validar el email
+    public static boolean isValidEmail(String email) {
+        return email.contains("@");
+    }
+
+    // Método para validar el alias
+    public static boolean isValidAlias(String alias) {
+        return alias.matches("^[a-zA-Z0-9]+$");
+    }
+}
