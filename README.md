@@ -48,4 +48,34 @@ Un árbol es una estructura de datos jerárquica que consta de nodos conectados 
 Tabla Hash: Se suele utilizar cuando se necesita una búsqueda rápida de elementos y el orden de los elementos no es importante. Por ejemplo, en la implementación de tablas de dispersión, en el manejo de tablas de símbolos en compiladores o en la implementación de caches.
 Árbol: Se utiliza cuando se necesita mantener los elementos ordenados y realizar operaciones eficientes de búsqueda, inserción y eliminación en un conjunto de datos ordenados. Por ejemplo, en la implementación de árboles de búsqueda binaria para diccionarios, en bases de datos para la indexación de registros o en sistemas de archivos para organizar directorios y archivos.
 
+3) Explica las di ferencias entre una pila y una cola. ¿Cuándo conviene utilizar cada 
+una de estas estructuras? ¿Cuál es el orden de comple jidad computacional de
+estas estructuras? No redacte el orden tal y como puede ver en los apuntes, 
+razónelo con sus propias palabras y argumentos.
+
+Pilas:
+Una pila es una estructura de datos donde el último elemento que se inserta es el primero en ser retirado (LIFO - Last In, First Out). Esto significa que los elementos se añaden y eliminan desde el mismo extremo, conocido como la cima (top) de la pila. Las operaciones principales en una pila son la inserción de elementos (push), que añade un elemento a la cima de la pila, y la eliminación de elementos (pop), que retira el elemento superior de la pila. Las pilas son útiles en situaciones donde se necesita procesar elementos en orden inverso al que fueron añadidos, como en la gestión de llamadas en la recursión o en el procesamiento de operaciones matemáticas en notación postfija (postfix).
+
+Colas:
+Una cola es una estructura de datos donde el primer elemento que se inserta es el primero en ser retirado (FIFO - First In, First Out). Esto significa que los elementos se añaden al final de la cola y se eliminan del principio de la cola. Las operaciones principales en una cola son la inserción de elementos (enqueue), que añade un elemento al final de la cola, y la eliminación de elementos (dequeue), que retira el elemento del principio de la cola. Las colas son útiles en situaciones donde se necesita procesar elementos en el mismo orden en el que fueron añadidos, como en la gestión de tareas en un sistema de gestión de procesos o en la implementación de buffers en la comunicación de datos.
+
+Orden de complejidad computacional:
+Tanto para pilas como para colas, las operaciones básicas de inserción y eliminación tienen una complejidad de tiempo constante 
+𝑂
+(
+1
+)
+O(1). Esto significa que estas operaciones tardan aproximadamente la misma cantidad de tiempo, independientemente del tamaño de la pila o la cola. Aunque algunas implementaciones específicas pueden variar, en general, el orden de complejidad de las operaciones básicas es 
+𝑂
+(
+1
+)
+O(1).
+
+¿Cuándo conviene utilizar cada una de estas estructuras?
+
+Pila: Se utiliza cuando se necesita un comportamiento LIFO, es decir, cuando es importante procesar elementos en orden inverso al que fueron añadidos. Por ejemplo, en la gestión de llamadas en la recursión o en el procesamiento de operaciones matemáticas en notación postfija.
+Cola: Se utiliza cuando se necesita un comportamiento FIFO, es decir, cuando es importante procesar elementos en el mismo orden en el que fueron añadidos. Por ejemplo, en la gestión de tareas en un sistema de gestión de procesos o en la implementación de buffers en la comunicación de datos.
+
+
 
