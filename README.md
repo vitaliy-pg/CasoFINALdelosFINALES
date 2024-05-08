@@ -104,3 +104,35 @@ Iteración 6: Continuamos con el séptimo elemento (89), lo dejamos en su posici
 
 Iteración 7: Finalmente, el octavo elemento (85) está en su posición correcta ya que es mayor que el elemento anterior (84). La lista permanece como (13 16 20 22 50 84 85 89).
 
+5) Dadas dos funciones y su número de operaciones:
+A = 1024n
+B = 16n 3
+Calcular a partir de qué tamaño de entrada n A es más eficiente que B
+
+Función A:
+(A = 1024n)
+Función B:
+(B = 16n^3)
+Para encontrar el punto de cruce, igualaremos las dos funciones:
+
+[1024n = 16n^3]
+
+Resolvamos esta ecuación para encontrar el valor de (n):
+
+[16n^3 - 1024n = 0]
+
+Factorizamos:
+
+[16n(n^2 - 64) = 0]
+
+Esto nos da dos soluciones:
+
+(n = 0)
+(n^2 - 64 = 0)
+Resolvamos la segunda ecuación:
+
+[n^2 - 64 = 0] [n^2 = 64] [n = \pm 8]
+
+Dado que estamos buscando un tamaño de entrada positivo, tomamos (n = 8).
+
+Por lo tanto, a partir de un tamaño de entrada (n = 8), la función (A) es más eficiente que la función (B).
