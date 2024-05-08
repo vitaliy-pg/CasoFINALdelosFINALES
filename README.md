@@ -183,3 +183,27 @@ Complejidad Computacional:
 La complejidad computacional de este algoritmo es (O(\log n)), donde (n) es el número de entrada.
 Esto se debe a que en cada llamada recursiva, reducimos el tamaño del número en un dígito (división entera por 10).
 Por lo tanto, el número de llamadas recursivas es proporcional al número de dígitos en el número de entrada.
+
+#EJERCICIO 5 
+
+
+Pregunta 1: Modificación de los atributos timeline y tweets
+
+Respuesta:
+
+No es necesario modificar los atributos timeline y tweets de la clase UserAccount para que contengan elementos de la clase hija Retweet. En Java, gracias a la herencia y el polimorfismo, un objeto de una clase derivada (como Retweet) puede ser manejado mediante una referencia de la clase base (Tweet). Por lo tanto, List<Tweet> puede contener tanto objetos Tweet como objetos Retweet sin necesidad de cambios.
+
+Justificación:
+
+Dado que Retweet es una subclase de Tweet, cualquier objeto Retweet es también un Tweet. Así, una lista que almacena objetos Tweet puede almacenar objetos Retweet también. Esto es un ejemplo clásico de polimorfismo, donde una variable de un tipo de superclase puede referenciar a un objeto de una subclase.
+
+Si fuera necesario modificar para otro tipo de operación o necesidad específica (como almacenar atributos adicionales específicos de Retweet no presentes en Tweet), entonces sí habría que considerar ajustes. Pero para los fines de este sistema, como está diseñado actualmente, no es necesario.
+
+Pregunta 2: Modificación del método tweet(Tweet tweet1)
+
+Respuesta:
+
+No es necesario modificar el método tweet(Tweet tweet1) de la clase UserAccount para que pueda enviar también objetos de tipo Retweet. Este método ya puede manejar objetos Retweet porque acepta un parámetro de tipo Tweet, y Retweet es un Tweet debido a la herencia.
+
+Justificación:
+El método tweet(Tweet tweet1) fue diseñado para aceptar un objeto Tweet. Gracias al polimorfismo en Java, este método también puede aceptar cualquier objeto de una subclase de Tweet, incluido Retweet. El comportamiento dinámico de Java determinará en tiempo de ejecución si el objeto es un Tweet o un Retweet, y actuará en consecuencia.
