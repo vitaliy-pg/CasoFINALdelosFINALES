@@ -156,6 +156,26 @@ public class Main extends JFrame {
     }
 
 
+    private void addComponent(JPanel panel, String label, Component... components) {
+        panel.add(new JLabel(label));
+        for (Component component : components) {
+            panel.add(component);
+        }
+    }
+
+    private JTextField createTextField(String label) {
+        JTextField textField = new JTextField();
+        textField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        textField.setToolTipText(label);
+        return textField;
+    }
+
+    private JButton createButton(String label, ActionListener actionListener) {
+        JButton button = new JButton(label);
+        button.addActionListener(actionListener);
+        return button;
+    }
+
     private static void createUserAccount () {
         System.out.print ( "Enter alias: " );
         String alias = scanner.nextLine ();
@@ -302,12 +322,8 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                Main main = new Main();
-                main.setVisible(true);
-            }
-        });
+        Main main = new Main();
+        main.setVisible(true);
     }
 }
 
