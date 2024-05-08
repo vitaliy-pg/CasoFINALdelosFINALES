@@ -182,12 +182,13 @@ public class Main {
     private static UserAccount currentUser;
 
     public static void loadUser ( String alias ) {
-        currentUser = accounts.get ( alias );
-        if (currentUser == null) {
-            System.out.println ( "Usuario no encontrado." );
-        } else {
-            System.out.println ( "Usuario " + alias + " cargado correctamente." );
-        }
+        UserManager userManager = new UserManager();
+        userManager.addUser("user1", new UserAccount("user1", new Email("user1@example.com")));
+        userManager.addUser("user2", new UserAccount("user2", new Email("user2@example.net")));
+
+        // Carga un usuario y verifica la funcionalidad
+        userManager.loadUser("user1");
+        System.out.println("Usuario actual: " + userManager.getCurrentUser());
     }
     public static void sortByEmail () {
         ArrayList<UserAccount> userList = new ArrayList<>(accounts.values());
