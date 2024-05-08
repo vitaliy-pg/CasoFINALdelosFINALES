@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class UserManager {
     private Map<String, UserAccount> accounts; // Almacena las cuentas de usuario
@@ -38,5 +37,15 @@ public class UserManager {
      */
     public UserAccount getCurrentUser() {
         return currentUser;
+
+
+    }
+
+
+    public void sortByEmail() {
+        List<UserAccount> userList = new ArrayList<> (accounts.values());
+        userList.sort( Comparator.comparing( u -> u.getEmail().toString()));
+        System.out.println("Usuarios ordenados por email:");
+        userList.forEach(u -> System.out.println(u.getEmail().toString()));
     }
 }
