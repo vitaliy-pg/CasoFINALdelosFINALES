@@ -188,7 +188,12 @@ public class Main {
             System.out.println ( "Usuario " + alias + " cargado correctamente." );
         }
     }
-
+    public static void sortByEmail() {
+        ArrayList<UserAccount> userList = new ArrayList<>(accounts.values());
+        userList.sort(Comparator.comparing(u -> u.getEmail().toString()));
+        System.out.println("Usuarios ordenados por email:");
+        userList.forEach(u -> System.out.println(u.getEmail()));
+    }
 
 }
 
