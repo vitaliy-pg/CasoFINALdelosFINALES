@@ -144,6 +144,15 @@ a) ¿Qué imprime el código? En caso de que no compile indique el motivo y arre
 como considere conveniente. Explique su solución de manera concisa.
 b) Explica brevemente qué cálculo está haciendo y qué tipo de recursividad está empleando.
 
+
+A) intenta realizar un cálculo recursivo pero no compilará correctamente debido a varios errores:
+
+Error de Sintaxis en la Línea 4: System.out.println(a) está mal escrito como System.out.println(a). Problema de Lógica en la Recursividad: La función recursive es llamada con un valor inicial de b = -2, y en el código no hay un caso base que maneje b negativos. Esto resultará en un bucle infinito de llamadas recursivas, ya que b nunca alcanzará 0, y continuará decreciendo indefinidamente. Código Corregido: import java.util.*;
+
+public class Main { public static void main(String[] args) { try { int a = recursive(1, -2); System.out.println(a); } catch (IllegalArgumentException e) { System.out.println(e.getMessage()); } }
+
+B) El método recursive en el código intenta calcular la potencia de un número a elevado a b, o sea a^b. Funciona multiplicando a por sí mismo b veces de manera recursiva. Si b es 0, devuelve 1 porque cualquier número elevado a 0 es 1. Si a es 0, el resultado es 0 porque 0 elevado a cualquier número es 0. El código utiliza recursividad lineal, realizando una llamada recursiva por cada reducción de b hasta que b llega a 0, en ese momento comienza a devolver el resultado acumulado de las multiplicaciones. Es un método comúnmente usado para ejemplificar cómo las funciones pueden llamarse a sí mismas para resolver problemas que pueden ser divididos en tareas más pequeñas de la misma naturaleza.
+
 #EJERCICIO 4 
 
 Calcular de forma recursiva la suma de los dígitos de un número siendo un ejemplo el número 102 -> 
